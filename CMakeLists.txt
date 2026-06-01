@@ -10,14 +10,6 @@
 # Specify minimum cmake version required to compile Tudat.
 cmake_minimum_required(VERSION 3.5)
 
-# Trick for recompiling changes for BUILD-TREE.
-if (EXISTS "${CMAKE_BINARY_DIR}/CMakeCache.txt")
-    file(REMOVE "${CMAKE_BINARY_DIR}/CMakeCache.txt")
-endif ()
-
-# Set cmake policy.
-cmake_policy(SET CMP0069 NEW)
-
 # Get version from file.
 file(STRINGS "version" TudatResources_VERSION)
 
@@ -27,7 +19,6 @@ project(TudatResources VERSION ${TudatResources_VERSION} LANGUAGES C CXX)
 # Get lower string name of PROJECT_NAME for directory configuration.
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
-set(CMAKE_POSITION_INDEPENDENT_CODE True)
 
 # +============================================================================
 # INSTALL TREE CONFIGURATION (Project name independent)
@@ -156,7 +147,6 @@ unset(INSTALL_BIN_DIR)
 unset(INSTALL_INCLUDE_DIR)
 unset(INSTALL_DATA_DIR)
 unset(INSTALL_MAN_DIR)
-unset(INSTALL_TESTS_DIR)
 unset(INSTALL_CMAKE_DIR)
 
 unset(RELATIVE_INSTALL_LIB_DIR)
@@ -164,5 +154,4 @@ unset(RELATIVE_INSTALL_BIN_DIR)
 unset(RELATIVE_INSTALL_INCLUDE_DIR)
 unset(RELATIVE_INSTALL_DATA_DIR)
 unset(RELATIVE_INSTALL_MAN_DIR)
-unset(RELATIVE_INSTALL_TESTS_DIR)
 unset(RELATIVE_INSTALL_CMAKE_DIR)
