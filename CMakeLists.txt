@@ -18,40 +18,18 @@ project(TudatResources VERSION ${TudatResources_VERSION} LANGUAGES C CXX)
 
 # Get lower string name of PROJECT_NAME for directory configuration.
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
-string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 
 # +============================================================================
 # INSTALL TREE CONFIGURATION (Project name independent)
 #  Offer the user the choice of overriding the installation directories.
 # +============================================================================
 set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib/" CACHE PATH "Installation directory for libraries")
-set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin/" CACHE PATH "Installation directory for executables")
 set(INSTALL_INCLUDE_DIR "${CMAKE_INSTALL_PREFIX}/include/" CACHE PATH "Installation directory for header files")
-set(INSTALL_DATA_DIR "${CMAKE_INSTALL_PREFIX}/resource/" CACHE PATH "Installation directory for data files")
-set(INSTALL_MAN_DIR "${CMAKE_INSTALL_PREFIX}/" CACHE PATH "Installation directory for man documentation")
 set(INSTALL_CMAKE_DIR "${INSTALL_LIB_DIR}/cmake/${PROJECT_NAME_LOWER}" CACHE PATH "Installation directory for cmake config files")
 
-# Make relative paths absolute (needed later on)
-foreach (p LIB BIN INCLUDE DATA CMAKE)
-    set(var INSTALL_${p}_DIR)
-    set(RELATIVE_INSTALL_${p}_DIR ${INSTALL_${p}_DIR})
-    if (NOT IS_ABSOLUTE "${${var}}")
-        set(${var} "${CMAKE_INSTALL_PREFIX}/${${var}}")
-    endif ()
-endforeach ()
-
-# Find relative paths for cmake-config file. (for find_package)
-file(RELATIVE_PATH rel_include_dir "${INSTALL_CMAKE_DIR}" "${INSTALL_INCLUDE_DIR}")
-file(RELATIVE_PATH rel_lib_dir     "${INSTALL_CMAKE_DIR}" "${INSTALL_LIB_DIR}")
-file(RELATIVE_PATH rel_data_dir    "${INSTALL_CMAKE_DIR}" "${INSTALL_DATA_DIR}")
-file(RELATIVE_PATH rel_bin_dir     "${INSTALL_CMAKE_DIR}" "${INSTALL_BIN_DIR}")
-file(RELATIVE_PATH rel_man_dir     "${INSTALL_CMAKE_DIR}" "${INSTALL_MAN_DIR}")
-
-# Set relative paths for config.cmake.
-foreach (p include lib data bin man)
-    string(TOUPPER ${p} P)
-    set(RELATIVE_INSTALL_${P}_DIR ${rel_${p}_dir})
-endforeach ()
+if (NOT IS_ABSOLUTE "${INSTALL_CMAKE_DIR}")
+    set(INSTALL_CMAKE_DIR "${CMAKE_INSTALL_PREFIX}/${INSTALL_CMAKE_DIR}")
+endif ()
 
 # +============================================================================
 # INSTALL TREE
@@ -143,15 +121,5 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME_LOWER}-config-version.
 #  Cleanup in case project is not top level.
 # +============================================================================
 unset(INSTALL_LIB_DIR)
-unset(INSTALL_BIN_DIR)
 unset(INSTALL_INCLUDE_DIR)
-unset(INSTALL_DATA_DIR)
-unset(INSTALL_MAN_DIR)
 unset(INSTALL_CMAKE_DIR)
-
-unset(RELATIVE_INSTALL_LIB_DIR)
-unset(RELATIVE_INSTALL_BIN_DIR)
-unset(RELATIVE_INSTALL_INCLUDE_DIR)
-unset(RELATIVE_INSTALL_DATA_DIR)
-unset(RELATIVE_INSTALL_MAN_DIR)
-unset(RELATIVE_INSTALL_CMAKE_DIR)
