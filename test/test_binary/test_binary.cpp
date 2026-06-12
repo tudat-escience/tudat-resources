@@ -7,7 +7,6 @@
 
 int main() {
     std::cout<<"\n" << "Path test print (with std::string(X).c_str())" << std::endl;
-    std::cout<<"\t" << "tudat::paths::get_prefix_path()            " << tudat::paths::get_prefix_path()              <<std::endl;
     std::cout<<"\t" << "tudat::paths::get_resources_path()         " << tudat::paths::get_resources_path()           <<std::endl;
     std::cout<<"\t" << "tudat::paths::get_atmosphere_tables_path() " << tudat::paths::get_atmosphere_tables_path()   <<std::endl;
     std::cout<<"\t" << "tudat::paths::get_earth_orientation_path() " << tudat::paths::get_earth_orientation_path()   <<std::endl;

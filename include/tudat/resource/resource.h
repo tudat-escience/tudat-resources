@@ -1,8 +1,6 @@
 #ifndef TUDATRESOURCES_RESOURCE_H
 #define TUDATRESOURCES_RESOURCE_H
 
-#include <tudat/resource/config.hpp>
-
 #define RESOURCE "/resource"
 #define ATMOSPHERE_TABLES "/atmosphere_tables"
 #define EARTH_ORIENTATION "/earth_orientation"
@@ -21,10 +19,6 @@
 #include <cstring>
 #include <string>
 
-//#define MAX_PREFIX_LEN 256
-//#define MAX_RESOURCE_LEN strlen("/resource")
-//#define MAX_RELATIVE_LEN 20
-
 namespace tudat {
 namespace paths {
 
@@ -37,10 +31,6 @@ static inline std::string get_homedir(void) {
   snprintf(homedir, MAX_PATH, "%s", getenv("HOME"));
 #endif
   return std::string(homedir);
-}
-
-static inline std::string get_prefix_path() {
-  return std::string(TUDAT_RESOURCE_PREFIX).c_str();
 }
 
 static inline std::string get_hidden_path() {
