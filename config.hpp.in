@@ -1,0 +1,2 @@
+#pragma once
+#define TUDAT_RESOURCE_DIR "@CMAKE_CURRENT_SOURCE_DIR@"
