@@ -34,3 +34,43 @@ if(NOT PROJECT_IS_TOP_LEVEL)
   # used to resolve resource path
   target_compile_definitions(tudat_resources INTERFACE SOURCE_BUILD)
 endif()
+
+if(PROJECT_IS_TOP_LEVEL)
+  # Tests
+  include(CTest)
+  add_executable(test_header test/test_header.cpp)
+  target_link_libraries(test_header PRIVATE tudat_resources)
+
+  add_test(NAME test_header COMMAND test_header)
+
+  # CMake package configuration
+  include(CMakePackageConfigHelpers)
+
+  install(TARGETS tudat_resources EXPORT tudat_resources-targets
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+  )
+
+  install(EXPORT tudat_resources-targets
+    FILE tudat_resources-targets.cmake
+    NAMESPACE tudat_resources::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/tudat_resources
+  )
+
+  configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/tudatresources-config.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/tudatresources-config.cmake"
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/tudat_resources
+  )
+
+  write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/tudatresources-config-version.cmake"
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMinorVersion
+  )
+
+  install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/tudatresources-config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/tudatresources-config-version.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/tudat_resources
+  )
+endif()
