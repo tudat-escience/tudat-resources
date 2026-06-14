@@ -57,20 +57,20 @@ if(PROJECT_IS_TOP_LEVEL)
   )
 
   configure_package_config_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/tudatresources-config.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/tudatresources-config.cmake"
+    "${CMAKE_CURRENT_SOURCE_DIR}/tudat_resources-config.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/tudat_resources-config.cmake"
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/tudat_resources
   )
 
   write_basic_package_version_file(
-    "${CMAKE_CURRENT_BINARY_DIR}/tudatresources-config-version.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/tudat_resources-config-version.cmake"
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY SameMinorVersion
   )
 
   install(FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/tudatresources-config.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/tudatresources-config-version.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/tudat_resources-config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/tudat_resources-config-version.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/tudat_resources
   )
 endif()
