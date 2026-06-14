@@ -7,9 +7,7 @@
 #    a copy of the license with this file. If not, please or visit:
 #    http://tudat.tudelft.nl/LICENSE.
 
-# Specify minimum cmake version required to compile Tudat.
-cmake_minimum_required(VERSION 3.5)
-
+cmake_minimum_required(VERSION 3.21)
 # Get version from file.
 file(STRINGS "version" TudatResources_VERSION)
 
