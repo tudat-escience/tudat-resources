@@ -51,6 +51,10 @@ if(PROJECT_IS_TOP_LEVEL)
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   )
 
+  # rsync rule for trailing slash in directory names
+  install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/tudat
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+  )
   install(EXPORT tudat_resources-targets
     FILE tudat_resources-targets.cmake
     NAMESPACE tudat_resources::
