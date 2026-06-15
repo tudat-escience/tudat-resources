@@ -40,6 +40,7 @@ if(PROJECT_IS_TOP_LEVEL)
   include(CTest)
   add_executable(test_header test/test_header.cpp)
   target_link_libraries(test_header PRIVATE tudat_resources)
+  target_compile_definitions(test_header PRIVATE SOURCE_BUILD)
 
   add_test(NAME test_header COMMAND test_header)
 
