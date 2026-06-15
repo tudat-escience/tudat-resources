@@ -8,40 +8,15 @@
 #    http://tudat.tudelft.nl/LICENSE.
 
 # Specify minimum cmake version required to compile Tudat.
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.21)
 
-# Trick for recompiling changes for BUILD-TREE.
-if (EXISTS "${CMAKE_BINARY_DIR}/CMakeCache.txt")
-    file(REMOVE "${CMAKE_BINARY_DIR}/CMakeCache.txt")
-endif ()
-
-# Set cmake policy.
-cmake_policy(SET CMP0069 NEW)
-
-# Specific project name.
 project(TudatResourcesTest VERSION 1.0.0 LANGUAGES C CXX)
 
 find_package(TudatResources REQUIRED)
 
-# Add test
 enable_testing()
 add_executable(test_binary test_binary.cpp)
-
-message(${TudatResources_INCLUDE_DIRS})
-include_directories(${TudatResources_INCLUDE_DIRS})
-add_test(test_binary tests/test_binary)
-
-set_target_properties(test_binary
-        PROPERTIES
-        LINKER_LANGUAGE CXX
-        ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib"
-        LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib"
-        RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/tests"
-        )
-
-target_include_directories(test_binary PUBLIC
-        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-        $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>
-        $<INSTALL_INTERFACE:include>)
+target_link_libraries(test_binary PRIVATE tudat_resources::tudat_resources)
+add_test(NAME test_binary COMMAND test_binary)
 
 
