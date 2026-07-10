@@ -1,0 +1,86 @@
+#
+# Private
+#
+# Do not track user-applications by default.
+tudatApplications/
+
+#
+# CMake 
+#
+CMakeCache.txt
+CMakeLists.txt.user
+CMakeFiles
+CMakeScripts
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+#
+# C++
+#
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+#
+# Build and doxygen related
+#
+Documentation/
+doc/doxygen/html/
+doc/doxygen/latex/
+build*/
+bin/
+lib/
+boost/
+resource/large_files
+
+#
+# Editor related
+#
+*~
+*#
+.#*
+*.autosave
+*.~?~
+*.save
+.DS_Store
+.idea/*
+cmake-build-debug/*
+install_test/*
+/cmake-build-debug/
+/cmake-build*
+
+
+# Rever
+rever/
+
+# Large files
+resource/spice_kernels/NOE-5-2021.bsp
+resource/spice_kernels/NOE-4-2020.bsp
+resource/spice_kernels/NOE-6-2018-MAIN-v2.bsp
+resource/spice_kernels/de440.bsp
